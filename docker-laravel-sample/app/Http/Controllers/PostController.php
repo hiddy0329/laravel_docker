@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+#inertiaクラスはフロントエンドにおいてlaravelとvueもしくはreactを連携させる
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -14,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'Hello, World!';
+        return Inertia::render('Post/Index', [
+            //
+        ]);
     }
 
     /**
