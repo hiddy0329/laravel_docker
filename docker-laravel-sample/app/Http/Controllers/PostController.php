@@ -17,7 +17,8 @@ class PostController extends Controller
     public function index()
     {
         return Inertia::render('Post/Index', [
-            //
+            #withメソッドでクエリを少なくし、N + 1問題を解決する
+            'posts' => Post::with('user:id,name')->latest()->get(),
         ]);
     }
 
