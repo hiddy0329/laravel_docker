@@ -1,9 +1,13 @@
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import Chirp from '@/Components/Post.vue';
     import InputError from '@/Components/InputError.vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { useForm, Head } from '@inertiajs/inertia-vue3';
-     
+import Post from '@/Components/Post.vue';
+
+    defineProps(['posts']);
+
     const form = useForm({
         message: '',
     });
@@ -23,6 +27,14 @@
                     <InputError :message="form.errors.message" class="mt-2" />
                     <PrimaryButton class="mt-4">Chirp</PrimaryButton>
                 </form>
+
+                <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                    <Post
+                        v-for="post in posts"
+                        :key="post.id"
+                        :post="post"
+                    />
+                </div>
             </div>
         </AuthenticatedLayout>
     </template>
